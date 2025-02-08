@@ -1,13 +1,19 @@
+import * as path from 'path';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import * as winston from 'winston';
 import { ConsoleLogger } from '@nestjs/common';
 
+
 const WinstonCloudWatch = require('winston-cloudwatch');
 
-// Load environment variables
-dotenv.config();
+// Load environment variables from a specific path
+dotenv.config({ path: path.resolve('C:/Users/ASUS/OneDrive/Desktop/Golang/Memescope_mvp/secrets.env') });
+
+// Debugging: Log environment variables
+console.log("CLOUDWATCH_LOG_GROUP:", process.env.CLOUDWATCH_LOG_GROUP);
+console.log("AWS_REGION:", process.env.AWS_REGION);
 
 // Configure CloudWatch Logger
 const cloudWatchLogger = winston.createLogger({
